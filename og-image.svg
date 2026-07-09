@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+  <rect width="1200" height="8" fill="#EA5148"/>
+  <text x="80" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="500" letter-spacing="0.16em" fill="#EA5148">PPP LOGO TEST BY INCREMENTIC</text>
+  <text x="80" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="92" font-weight="700" letter-spacing="-0.02em" fill="#2B2C31">Pencil.</text>
+  <text x="80" y="350" font-family="system-ui, -apple-system, sans-serif" font-size="92" font-weight="700" letter-spacing="-0.02em" fill="#EA5148">Pen.</text>
+  <text x="80" y="450" font-family="system-ui, -apple-system, sans-serif" font-size="92" font-weight="700" letter-spacing="-0.02em" fill="#2B2C31">Pigment.</text>
+  <text x="80" y="520" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#4C4E56">Judge logo effectiveness, not just attractiveness.</text>
+  <path d="M900 180h120l16-6v12l-16-6H900z" fill="#4C4E56"/>
+  <rect x="900" y="276" width="120" height="12" rx="1.5" fill="#4C4E56"/>
+  <path d="M1020 282h24l8 4-8 4h-24v-8z" fill="#4C4E56"/>
+  <circle cx="980" cy="400" r="28" stroke="#EA5148" stroke-width="3" fill="none"/>
+  <circle cx="980" cy="400" r="14" fill="#EA5148"/>
+  <text x="80" y="590" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="700" fill="#EA5148">Incrementic</text>
+  <text x="1120" y="590" text-anchor="end" font-family="ui-monospace, monospace" font-size="18" fill="#9A9AA0">incrementic.com</text>
+</svg>

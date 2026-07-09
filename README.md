@@ -1,12 +1,14 @@
 # PPP Logo Adviser
 
-Landing page, Cursor skill, and pasteable AI agent prompt for David Bain’s **Pencil-Pen-Pigment (PPP) Logo Test**.
+Landing page, Cursor skill, and pasteable AI agent prompt for David Bain’s **Pencil-Pen-Pigment (PPP) Logo Test** — a resource from [Incrementic](https://incrementic.com/).
 
 Effectiveness beats attractiveness. The PPP Test asks whether a logo still works when:
 
 1. **Pencil** — it is easy to draw  
 2. **Pen** — it is recognisable on the side of a pen  
 3. **Pigment** — it is recognisable as a single colour  
+
+Branding follows [brand.incrementic.com](https://brand.incrementic.com/).
 
 ## What’s in this repo
 
@@ -36,6 +38,8 @@ npx vercel --prod
 ```
 
 No build step, framework, or environment variables are required. `vercel.json` sets `framework: null` and headers for markdown/zip downloads.
+
+If you use a custom domain, update the absolute `og:image` and `og:url` values in `index.html` to match your production URL.
 
 ## Use the Cursor skill
 
