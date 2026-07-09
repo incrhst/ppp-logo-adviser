@@ -454,30 +454,37 @@ code {
   max-width: 30ch;
 }
 
-/* note */
+/* note — editorial pull from earlier design */
+.note {
+  padding-top: clamp(2.5rem, 6vh, 4rem);
+}
+
 .note blockquote {
   margin: 0;
-  max-width: 52ch;
-  padding: 1.5rem 1.6rem;
-  border: 1px solid var(--hair);
-  border-radius: 12px;
-  background: var(--soft);
-  border-left: 3px solid var(--color-accent);
+  max-width: 40rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 0;
 }
 
 .note blockquote p {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.55;
+  font-family: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink);
 }
 
 .note blockquote footer {
-  margin-top: 0.85rem;
+  margin-top: 1rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
+  font-style: normal;
 }
 
 /* footer */
