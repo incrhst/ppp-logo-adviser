@@ -20,14 +20,28 @@ Effectiveness beats attractiveness. The PPP Test asks whether a logo still works
 ## Local preview
 
 ```bash
-python3 -m http.server 8080
+npm run dev
+# or: python3 -m http.server 8080
 ```
 
 Open http://localhost:8080
 
+## Deploy on Vercel
+
+This is a static site. Import the GitHub repo in Vercel, or from the CLI:
+
+```bash
+npx vercel
+npx vercel --prod
+```
+
+No build step, framework, or environment variables are required. `vercel.json` sets `framework: null` and headers for markdown/zip downloads.
+
 ## Use the Cursor skill
 
 Copy `.cursor/skills/ppp-logo-test/` into a project’s `.cursor/skills/` folder (or your personal `~/.cursor/skills/`), then ask the agent to run a PPP Logo Test on a mark.
+
+Public copies also live under `resources/` for the landing page downloads.
 
 ## Use the pasteable prompt
 

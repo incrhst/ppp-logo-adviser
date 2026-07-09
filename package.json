@@ -1,0 +1,9 @@
+{
+  "name": "ppp-logo-adviser",
+  "private": true,
+  "description": "Pencil-Pen-Pigment Logo Test — landing page, Cursor skill, and agent prompt",
+  "scripts": {
+    "dev": "npx --yes serve . -l 8080",
+    "start": "npx --yes serve . -l 8080"
+  }
+}
