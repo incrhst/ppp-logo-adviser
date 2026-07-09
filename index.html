@@ -163,14 +163,51 @@
             as a Cursor skill.
           </p>
 
+          <p class="skills-badge-wrap">
+            <a
+              href="https://skills.sh/incrhst/ppp-logo-adviser"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img
+                src="https://skills.sh/b/incrhst/ppp-logo-adviser"
+                alt="Install ppp-logo-test on skills.sh"
+                height="20"
+              />
+            </a>
+          </p>
+
           <div class="resource-grid">
+            <article class="resource resource-install">
+              <p class="resource-label">Recommended</p>
+              <h3>Install with skills CLI</h3>
+              <p>
+                One command installs <code>ppp-logo-test</code> for Cursor and other
+                supported agents via
+                <a href="https://skills.sh/incrhst/ppp-logo-adviser" rel="noopener noreferrer" target="_blank">skills.sh</a>.
+              </p>
+              <div class="install-snippet">
+                <code id="install-command">npx skills add incrhst/ppp-logo-adviser@ppp-logo-test -y</code>
+                <button type="button" class="text-btn" id="copy-install">Copy</button>
+              </div>
+              <p class="copy-status" id="install-status" role="status" aria-live="polite"></p>
+              <div class="resource-actions">
+                <a
+                  class="btn btn-primary"
+                  href="https://skills.sh/incrhst/ppp-logo-adviser"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >View on skills.sh</a
+                >
+              </div>
+            </article>
+
             <article class="resource">
               <p class="resource-label">Cursor skill</p>
               <h3>ppp-logo-test</h3>
               <p>
-                Drop into <code>.cursor/skills/ppp-logo-test/</code> so your agent
-                evaluates logos with PPP scores, variation checks, and a fixed
-                report template.
+                Manual install: drop into <code>.cursor/skills/ppp-logo-test/</code>
+                or use the zip below.
               </p>
               <div class="resource-actions">
                 <a

@@ -351,6 +351,55 @@ a {
   max-width: 34ch;
 }
 
+.resource p a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.skills-badge-wrap {
+  margin: -0.5rem 0 1.5rem;
+}
+
+.skills-badge-wrap img {
+  display: block;
+  height: 20px;
+  width: auto;
+}
+
+.install-snippet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  background: var(--ink);
+}
+
+.install-snippet code {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #ededef;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  word-break: break-all;
+}
+
+.install-snippet .text-btn {
+  color: #ff9d96;
+  flex-shrink: 0;
+}
+
+.install-snippet .text-btn:hover,
+.install-snippet .text-btn:focus-visible {
+  color: var(--incrementic-white);
+}
+
 .resource-actions {
   display: flex;
   flex-wrap: wrap;

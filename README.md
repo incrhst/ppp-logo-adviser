@@ -1,5 +1,7 @@
 # PPP Logo Adviser
 
+[![skills.sh](https://skills.sh/b/incrhst/ppp-logo-adviser)](https://skills.sh/incrhst/ppp-logo-adviser)
+
 Landing page, Cursor skill, and pasteable AI agent prompt for David Bain’s **Pencil-Pen-Pigment (PPP) Logo Test** — a resource from [Incrementic](https://incrementic.com/).
 
 Effectiveness beats attractiveness. The PPP Test asks whether a logo still works when:
@@ -41,7 +43,27 @@ No build step, framework, or environment variables are required. `vercel.json` s
 
 If you use a custom domain, update the absolute `og:image` and `og:url` values in `index.html` to match your production URL.
 
-## Use the Cursor skill
+## Install the skill
+
+Use the [skills.sh](https://skills.sh) CLI — works with Cursor and other supported agents:
+
+```bash
+# Project install
+npx skills add incrhst/ppp-logo-adviser@ppp-logo-test -y
+
+# Global install
+npx skills add incrhst/ppp-logo-adviser@ppp-logo-test -g -y
+```
+
+List skills in this repo without installing:
+
+```bash
+npx skills add incrhst/ppp-logo-adviser --list
+```
+
+Learn more: [skills.sh/incrhst/ppp-logo-adviser](https://skills.sh/incrhst/ppp-logo-adviser)
+
+## Use the Cursor skill (manual)
 
 Copy `.cursor/skills/ppp-logo-test/` into a project’s `.cursor/skills/` folder (or your personal `~/.cursor/skills/`), then ask the agent to run a PPP Logo Test on a mark.
 

@@ -31,9 +31,21 @@ async function copyText(text) {
   document.body.removeChild(ta);
 }
 
-function setStatus(message) {
-  const el = document.getElementById("copy-status");
+function setStatus(message, id = "copy-status") {
+  const el = document.getElementById(id);
   if (el) el.textContent = message;
+}
+
+const INSTALL_COMMAND = "npx skills add incrhst/ppp-logo-adviser@ppp-logo-test -y";
+
+async function handleCopyInstall() {
+  try {
+    await copyText(INSTALL_COMMAND);
+    setStatus("Copied to clipboard.", "install-status");
+  } catch (err) {
+    console.error(err);
+    setStatus("Copy failed.", "install-status");
+  }
 }
 
 let cachedPrompt = null;
@@ -72,5 +84,6 @@ document.getElementById("copy-prompt")?.addEventListener("click", handleCopy);
 document
   .getElementById("copy-prompt-inline")
   ?.addEventListener("click", handleCopy);
+document.getElementById("copy-install")?.addEventListener("click", handleCopyInstall);
 
 hydratePreview();
