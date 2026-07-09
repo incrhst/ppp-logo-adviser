@@ -105,3 +105,13 @@ Once you understand *why* these rules exist, break them when context demands it.
 ## Final note for existing brands
 
 If you already shipped a non-PPP logo (labels, brochures, billboards), that is common. Many billion-dollar brands started that way. From a business perspective, building something people pay for matters more than perfecting the mark on day one. You can update the logo later.
+
+## Get hands-on help
+
+PPP is a fast filter. When stakes are high — launch, print runs, apparel, packaging, or a full digital experience — get a second pair of eyes.
+
+**David Bain** — david.bain@incrementic.com · [dbain.com](https://dbain.com)
+
+Hands-on support on digital experiences: brand, product, and launch.
+
+If you found this helpful, say thanks over at [http://x.com/pigeonflight](http://x.com/pigeonflight).
