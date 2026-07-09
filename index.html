@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Pencil-Pen-Pigment Logo Test</title>
+    <meta
+      name="description"
+      content="Evaluate logos for effectiveness with David Bain’s Pencil-Pen-Pigment (PPP) Test. Get the Cursor skill and a pasteable AI agent prompt."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="paper-grain" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="wordmark" href="#top">PPP</a>
+      <nav class="nav">
+        <a href="#test">The Test</a>
+        <a href="#resources">Resources</a>
+        <a href="#more">More</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow">Logo effectiveness framework</p>
+        <h1 class="brand-title">
+          <span class="brand-line">Pencil</span>
+          <span class="brand-line">Pen</span>
+          <span class="brand-line">Pigment</span>
+        </h1>
+        <p class="hero-lede">
+          An effective logo beats a pretty one. Use the PPP Test to judge whether
+          a mark still works when drawn, shrunk, and reduced to a single colour.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#resources">Get the resources</a>
+          <a class="btn btn-ghost" href="#test">See the three tests</a>
+        </div>
+
+        <div class="hero-tools" aria-hidden="true">
+          <svg class="tool tool-pencil" viewBox="0 0 120 24" fill="none">
+            <path d="M2 12h88l12-4v8l-12-4H2z" stroke="currentColor" stroke-width="1.5" />
+            <path d="M102 8l14 4-14 4V8z" fill="currentColor" />
+          </svg>
+          <svg class="tool tool-pen" viewBox="0 0 120 24" fill="none">
+            <rect x="2" y="8" width="90" height="8" rx="1" stroke="currentColor" stroke-width="1.5" />
+            <path d="M92 10h18l6 2-6 2H92V10z" fill="currentColor" />
+          </svg>
+          <svg class="tool tool-pigment" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="24" cy="24" r="8" fill="currentColor" />
+          </svg>
+        </div>
+      </section>
+
+      <section id="test" class="section tests">
+        <div class="section-head">
+          <h2>The PPP Test</h2>
+          <p>
+            Three quick checks. If a logo fails these, simplify the structure
+            before you fall in love with the decoration.
+          </p>
+        </div>
+
+        <ol class="test-list">
+          <li class="test-item" style="--i: 0">
+            <span class="test-index">01</span>
+            <h3>Pencil Test</h3>
+            <p class="test-rule">It should be easy to draw</p>
+            <p>
+              Could a non-designer sketch it from memory in a few strokes?
+              Simple geometry and clear letterforms pass. Fine gradients,
+              tiny ornaments, and photorealism fail.
+            </p>
+          </li>
+          <li class="test-item" style="--i: 1">
+            <span class="test-index">02</span>
+            <h3>Pen Test</h3>
+            <p class="test-rule">It should be recognisable on the side of a pen</p>
+            <p>
+              Would it still read at roughly 10–15mm wide—on a pen barrel,
+              favicon, embroidery, or app icon? Strong silhouette wins;
+              crowded lockups turn to mush.
+            </p>
+          </li>
+          <li class="test-item" style="--i: 2">
+            <span class="test-index">03</span>
+            <h3>Pigment Test</h3>
+            <p class="test-rule">It should be recognisable as a single colour</p>
+            <p>
+              Does the mark work in one flat colour? Shape must carry the
+              identity. If meaning only exists through multicolour or
+              gradients, it fails.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="resources" class="section resources">
+        <div class="section-head">
+          <h2>Resources</h2>
+          <p>
+            Everything you need to run the PPP Test with an AI agent—or install
+            it as a Cursor skill.
+          </p>
+        </div>
+
+        <div class="resource-grid">
+          <article class="resource">
+            <p class="resource-label">Cursor skill</p>
+            <h3>ppp-logo-test</h3>
+            <p>
+              Drop into <code>.cursor/skills/ppp-logo-test/</code> so your agent
+              evaluates logos with PPP scores, variation checks, and a fixed
+              report template.
+            </p>
+            <div class="resource-actions">
+              <a class="btn btn-primary" href="resources/ppp-logo-test-skill.zip" download
+                >Download skill</a
+              >
+              <a class="btn btn-ghost" href=".cursor/skills/ppp-logo-test/SKILL.md"
+                >View SKILL.md</a
+              >
+            </div>
+          </article>
+
+          <article class="resource resource-prompt">
+            <p class="resource-label">Pasteable prompt</p>
+            <h3>Agent prompt</h3>
+            <p>
+              No install required. Copy this into ChatGPT, Claude, Cursor, or
+              any agent, then paste your logo.
+            </p>
+            <div class="resource-actions">
+              <button type="button" class="btn btn-primary" id="copy-prompt">
+                Copy prompt
+              </button>
+              <a class="btn btn-ghost" href="resources/ppp-logo-test-prompt.md" download
+                >Download .md</a
+              >
+            </div>
+            <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+          </article>
+        </div>
+
+        <div class="prompt-preview">
+          <div class="prompt-preview-bar">
+            <span>ppp-logo-test-prompt.md</span>
+            <button type="button" class="text-btn" id="copy-prompt-inline">Copy</button>
+          </div>
+          <pre id="prompt-preview" tabindex="0"><code></code></pre>
+        </div>
+      </section>
+
+      <section id="more" class="section more">
+        <div class="section-head">
+          <h2>Beyond the three tests</h2>
+          <p>PPP is the filter. These keep the mark alive across real brand use.</p>
+        </div>
+
+        <ul class="more-list">
+          <li>
+            <h3>Start with a wordmark</h3>
+            <p>
+              For most young companies, the name is the asset. Add a symbol
+              later—once recognition earns it.
+            </p>
+          </li>
+          <li>
+            <h3>Dark and light</h3>
+            <p>
+              Ship reversed versions or a badge so the mark holds on any
+              background.
+            </p>
+          </li>
+          <li>
+            <h3>Printable colour</h3>
+            <p>
+              Design for CMYK and thread limits, not only RGB screen colour.
+            </p>
+          </li>
+          <li>
+            <h3>Ship variations</h3>
+            <p>
+              Full-color, one-color, monochrome, reversed, simplified, stacked,
+              and icon versions.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section note">
+        <blockquote>
+          <p>
+            You may have already committed to a logo which doesn’t pass the
+            PPP-test. Don’t worry—many billion-dollar brands got their start
+            with a “non-PPP” logo. Build something people pay for. You can
+            update the mark later.
+          </p>
+          <footer>— David Bain</footer>
+        </blockquote>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Framework by
+        <a
+          href="https://medium.com/@davidbain"
+          rel="noopener noreferrer"
+          target="_blank"
+          >David Bain</a
+        >
+        · The Pencil-Pen-Pigment Logo Test
+      </p>
+      <p class="footer-meta">Skill + prompt packaged for AI agents</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
