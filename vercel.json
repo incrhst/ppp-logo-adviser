@@ -3,6 +3,14 @@
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "critique-flyer.incrementic.com" }],
+      "destination": "/flyer"
+    },
+    { "source": "/", "destination": "/ppp" }
+  ],
   "redirects": [
     {
       "source": "/resources/SKILL.md",
@@ -44,6 +52,13 @@
     },
     {
       "source": "/og-image.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, immutable" },
+        { "key": "Content-Type", "value": "image/png" }
+      ]
+    },
+    {
+      "source": "/og-flyer.png",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=604800, immutable" },
         { "key": "Content-Type", "value": "image/png" }

@@ -1,0 +1,1182 @@
+/* ============================================================
+   Critique My Flyer — the noticeboard
+   Municipal felt board, pinned stock, typed corrections.
+   ============================================================ */
+
+:root {
+  --board: #223b31;
+  --board-deep: #16281f;
+  --board-rail: #101d17;
+
+  --newsprint: #ece6d6;
+  --white-stock: #fbfaf7;
+  --canary: #ffe24a;
+  --pink: #ff3d7f;
+  --pink-deep: #c0134f;
+  --green-stock: #c3ef52;
+
+  --ink: #14171a;
+  --ink-soft: #565b5e;
+  --ink-faint: #8b8f91;
+
+  --on-board: #ece6d6;
+  --on-board-soft: #a3b9ab;
+
+  --display: "Anton", "Haettenschweiler", "Arial Narrow", sans-serif;
+  --body: "Libre Franklin", system-ui, -apple-system, sans-serif;
+  --typed: "Courier Prime", "Courier New", ui-monospace, monospace;
+
+  --max: 1180px;
+  --gutter: clamp(1.1rem, 4vw, 3rem);
+
+  --lift: 0 14px 28px -12px rgba(8, 18, 13, 0.72);
+  --lift-sm: 0 8px 16px -8px rgba(8, 18, 13, 0.6);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.06rem);
+  line-height: 1.62;
+  color: var(--on-board);
+  background: var(--board);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  padding: 0.75rem 1rem;
+  background: var(--canary);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.skip:focus {
+  left: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--canary);
+  outline-offset: 3px;
+}
+
+/* the rail is sticky, so anchored sections must clear it */
+[id] {
+  scroll-margin-top: 72px;
+}
+
+/* ---------- top rail: the board's aluminium edge ---------- */
+
+.rail {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--board-rail);
+  border-bottom: 1px solid rgba(236, 230, 214, 0.14);
+}
+
+.rail-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.rail-brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.rail-brand img {
+  height: 18px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+}
+
+.rail-nav {
+  display: flex;
+  gap: 1.4rem;
+  font-family: var(--typed);
+  font-size: 0.78rem;
+}
+
+.rail-nav a {
+  color: var(--on-board-soft);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.rail-nav a:hover,
+.rail-nav a:focus-visible {
+  color: var(--canary);
+  border-bottom-color: var(--canary);
+}
+
+/* ---------- the board ---------- */
+
+.board {
+  position: relative;
+  padding: clamp(2rem, 6vh, 4rem) var(--gutter) clamp(3rem, 8vh, 5rem);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(58, 92, 74, 0.55) 0%, transparent 62%),
+    var(--board);
+  overflow: hidden;
+}
+
+/* felt weave — the board's own material, not decoration */
+.board-noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(236, 230, 214, 0.055) 1px, transparent 1.4px),
+    radial-gradient(rgba(8, 18, 13, 0.09) 1px, transparent 1.4px);
+  background-size: 5px 5px, 7px 7px;
+  background-position: 0 0, 3px 2px;
+}
+
+.wall {
+  position: relative;
+  max-width: var(--max);
+  margin: 0 auto;
+  min-height: min(76svh, 720px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ---------- competing notices ---------- */
+
+.note {
+  position: absolute;
+  padding: 0.85rem 0.9rem 0.7rem;
+  background: var(--newsprint);
+  color: var(--ink);
+  box-shadow: var(--lift-sm);
+  transform-origin: 50% 0;
+  transition: filter 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: filter;
+}
+
+.note::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin-left: -4.5px;
+  border-radius: 50%;
+  background: #9aa0a4;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), inset 0 -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.note-kicker {
+  font-family: var(--typed);
+  font-size: 0.62rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.15rem;
+}
+
+.note-big {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  line-height: 0.95;
+  margin: 0.35rem 0 0.3rem;
+}
+
+.note-small {
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
+}
+
+.tabs-dead {
+  display: flex;
+  gap: 2px;
+  margin-top: 0.55rem;
+  padding-top: 0.35rem;
+  border-top: 1px dashed rgba(20, 23, 26, 0.35);
+}
+
+.tabs-dead span {
+  flex: 1;
+  height: 22px;
+  background: rgba(20, 23, 26, 0.07);
+}
+
+.note-a { top: 2%;  left: 1%;   width: 158px; transform: rotate(-2.6deg); }
+.note-b { top: 30%; left: 3%;   width: 150px; transform: rotate(1.8deg); background: var(--green-stock); }
+.note-c { top: 62%; left: 0%;   width: 176px; transform: rotate(-1.2deg); }
+.note-d { top: 4%;  left: 33%;  width: 146px; transform: rotate(2.2deg); background: var(--white-stock); }
+.note-e { top: 74%; left: 30%;  width: 168px; transform: rotate(-2deg); }
+.note-f { top: 8%;  right: 3%;  width: 156px; transform: rotate(-1.6deg); background: var(--canary); }
+.note-g { top: 44%; right: 0%;  width: 172px; transform: rotate(2.4deg); }
+.note-h { top: 70%; right: 5%;  width: 150px; transform: rotate(-2.8deg); background: var(--white-stock); }
+
+/* the squint: everything else recedes, the subject stays sharp */
+.wall.squinted .note {
+  filter: blur(3.5px) saturate(0.22) brightness(0.58);
+}
+
+/* ---------- the subject flyer ---------- */
+
+.subject {
+  position: relative;
+  z-index: 5;
+  width: min(100%, 460px);
+  margin-left: clamp(0px, 8vw, 190px);
+  padding: 2.4rem 2rem 0;
+  background: var(--canary);
+  color: var(--ink);
+  transform: rotate(-1.1deg);
+  box-shadow: var(--lift);
+}
+
+.pin {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 17px;
+  height: 17px;
+  margin-left: -8.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #ff8fb4 0%, var(--pink) 42%, var(--pink-deep) 100%);
+  box-shadow: 0 3px 5px rgba(8, 18, 13, 0.5), inset 0 -2px 3px rgba(0, 0, 0, 0.28);
+}
+
+.pin-sm {
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  top: 9px;
+}
+
+.subject-kicker {
+  font-family: var(--typed);
+  font-size: 0.72rem;
+  color: rgba(20, 23, 26, 0.68);
+  margin-bottom: 0.9rem;
+}
+
+.subject h1 {
+  font-family: var(--display);
+  font-size: clamp(3.2rem, 9vw, 5.4rem);
+  line-height: 0.86;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+
+.subject-lede {
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3.4vw, 1.85rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--pink-deep);
+  margin-bottom: 1rem;
+}
+
+.subject-body {
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: rgba(20, 23, 26, 0.86);
+  margin-bottom: 1.6rem;
+  max-width: 42ch;
+}
+
+/* ---------- tear-off tabs ---------- */
+
+.tear {
+  margin: 0 -2rem;
+  padding: 0 0.5rem;
+  border-top: 2px dashed rgba(20, 23, 26, 0.42);
+}
+
+.tear-instruction {
+  font-family: var(--typed);
+  font-size: 0.74rem;
+  padding: 0.5rem 1.5rem 0.35rem;
+  color: rgba(20, 23, 26, 0.72);
+}
+
+.tear-strip {
+  display: flex;
+  gap: 0;
+  padding: 0 1rem;
+}
+
+.tab {
+  flex: 1;
+  min-width: 0;
+  appearance: none;
+  border: 0;
+  border-left: 1px dashed rgba(20, 23, 26, 0.42);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--typed);
+  font-size: 0.7rem;
+  line-height: 1.25;
+  padding: 0.35rem 0.2rem 0.9rem;
+  cursor: pointer;
+  transform-origin: 50% 0;
+  transition: transform 260ms cubic-bezier(0.16, 1, 0.3, 1), background 160ms ease,
+    opacity 260ms ease;
+}
+
+.tab:last-child {
+  border-right: 1px dashed rgba(20, 23, 26, 0.42);
+}
+
+.tab-line {
+  display: block;
+}
+
+.tab:hover,
+.tab:focus-visible {
+  background: rgba(20, 23, 26, 0.09);
+  transform: translateY(4px);
+}
+
+.tab.torn {
+  transform: translateY(120px) rotate(-9deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tear-status {
+  min-height: 1.4rem;
+  padding: 0.55rem 0 0.9rem;
+  font-family: var(--typed);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+}
+
+.squint-caption {
+  position: relative;
+  max-width: var(--max);
+  margin: clamp(1.5rem, 4vh, 2.5rem) auto 0;
+  font-family: var(--typed);
+  font-size: 0.82rem;
+  color: var(--on-board-soft);
+  max-width: 62ch;
+}
+
+.squint-caption-mark {
+  color: var(--canary);
+  margin-right: 0.4rem;
+}
+
+.squint-caption a {
+  color: var(--canary);
+  text-underline-offset: 3px;
+}
+
+/* ---------- the inspection sheet ---------- */
+
+.sheet-section {
+  padding: clamp(3rem, 9vh, 6rem) var(--gutter);
+  background: var(--board-deep);
+}
+
+.sheet {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3.6rem) clamp(1.4rem, 5vw, 4rem) clamp(2.4rem, 6vw, 4rem);
+  background: var(--newsprint);
+  color: var(--ink);
+  box-shadow: var(--lift);
+  transform: rotate(-0.35deg);
+}
+
+.staple {
+  position: absolute;
+  top: 14px;
+  width: 26px;
+  height: 7px;
+  background: linear-gradient(#c9ced1, #8d9598 60%, #6d7477);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.staple-1 { left: 22px; transform: rotate(-7deg); }
+.staple-2 { right: 22px; transform: rotate(6deg); }
+
+.sheet-head {
+  font-family: var(--typed);
+  font-size: 0.76rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+
+.sheet-title {
+  font-family: var(--display);
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+
+.sheet-intro {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin-bottom: 2.6rem;
+}
+
+.procedure {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+}
+
+.procedure > li {
+  counter-increment: step;
+  position: relative;
+  padding: 1.5rem 0 1.5rem 4.2rem;
+  border-top: 1px solid rgba(20, 23, 26, 0.18);
+}
+
+.procedure > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 1.35rem;
+  font-family: var(--display);
+  font-size: 2.1rem;
+  line-height: 1;
+  color: var(--pink-deep);
+}
+
+.procedure h3 {
+  font-family: var(--display);
+  font-size: 1.28rem;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+.procedure p {
+  color: var(--ink-soft);
+  max-width: 66ch;
+  font-size: 0.97rem;
+}
+
+.omissions {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.omissions li {
+  font-family: var(--typed);
+  font-size: 0.74rem;
+  padding: 0.24rem 0.5rem;
+  background: rgba(20, 23, 26, 0.06);
+  border: 1px solid rgba(20, 23, 26, 0.18);
+  color: var(--ink);
+}
+
+.omissions li::before {
+  content: "☐ ";
+  color: var(--pink-deep);
+}
+
+.sheet-margin-note {
+  margin-top: 2.4rem;
+  padding-left: 1.1rem;
+  border-left: 1px solid var(--pink-deep);
+  font-family: var(--typed);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 58ch;
+}
+
+/* ---------- worked example ---------- */
+
+.example {
+  padding: clamp(3rem, 9vh, 6rem) var(--gutter);
+  background: var(--board);
+}
+
+.example-head {
+  max-width: var(--max);
+  margin: 0 auto clamp(2rem, 5vh, 3rem);
+}
+
+.example-head h2,
+.distance-head h2,
+.take h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+
+.example-head p,
+.distance-head p {
+  color: var(--on-board-soft);
+  max-width: 62ch;
+}
+
+.example-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+
+/* the flyer under review stays alongside its critique while it scrolls */
+.example-flyer-wrap {
+  position: sticky;
+  top: 84px;
+}
+
+.illustrative {
+  font-family: var(--typed);
+  font-size: 0.72rem;
+  color: var(--on-board-soft);
+  margin-bottom: 0.7rem;
+}
+
+/* the deliberately weak flyer, authored as demonstration material */
+.bad-flyer {
+  position: relative;
+  padding: 1.6rem 1.3rem 1.2rem;
+  background: var(--white-stock);
+  color: var(--ink);
+  box-shadow: var(--lift);
+  transform: rotate(0.6deg);
+}
+
+.bad-flyer-logo {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  line-height: 0.92;
+  text-transform: uppercase;
+  margin-bottom: 0.9rem;
+}
+
+.bad-flyer-photo {
+  position: relative;
+  height: 128px;
+  margin-bottom: 0.9rem;
+  background: linear-gradient(#b9cdd6 0 46%, #ddd2b8 46% 100%);
+}
+
+.bad-flyer-photo-label {
+  position: absolute;
+  inset: auto 0 6px 0;
+  text-align: center;
+  font-family: var(--typed);
+  font-size: 0.6rem;
+  color: rgba(20, 23, 26, 0.55);
+}
+
+.bad-flyer-head {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.bad-flyer-para {
+  font-size: 0.68rem;
+  line-height: 1.42;
+  color: var(--ink-soft);
+  margin-bottom: 0.9rem;
+}
+
+/* deliberately tiny — the defect being demonstrated is the size, so the
+   colour still has to clear contrast on its own */
+.bad-flyer-url {
+  font-size: 0.52rem;
+  color: #6f7477;
+}
+
+/* the returned critique */
+.critique {
+  padding: clamp(1.3rem, 3vw, 2.1rem) clamp(1.2rem, 3vw, 2rem);
+  background: var(--white-stock);
+  color: var(--ink);
+  box-shadow: var(--lift);
+  transform: rotate(-0.4deg);
+  font-family: var(--typed);
+}
+
+.critique-file {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.3rem;
+  border-bottom: 1px solid rgba(20, 23, 26, 0.16);
+}
+
+.critique-h {
+  font-family: var(--display);
+  font-size: 1.02rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.critique-h:first-of-type {
+  margin-top: 0;
+}
+
+.critique-h-fix {
+  color: var(--pink-deep);
+}
+
+.critique-h-missing {
+  color: var(--ink-soft);
+}
+
+.critique p {
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 68ch;
+}
+
+.fixes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.fixes li {
+  font-size: 0.84rem;
+  line-height: 1.58;
+  color: var(--ink-soft);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.fixes li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--pink-deep);
+}
+
+.fixes strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.arrow {
+  color: var(--pink-deep);
+  font-weight: 700;
+  padding: 0 0.15rem;
+}
+
+.critique-missing {
+  font-size: 0.8rem;
+}
+
+/* ---------- distance ruler ---------- */
+
+.distance {
+  padding: clamp(3rem, 9vh, 6rem) var(--gutter);
+  background: var(--board-deep);
+}
+
+.distance-head {
+  max-width: var(--max);
+  margin: 0 auto clamp(2rem, 5vh, 3rem);
+}
+
+.ruler {
+  list-style: none;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0;
+}
+
+.ruler li {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 12rem) minmax(0, 1fr) auto;
+  gap: 0.4rem 1.5rem;
+  align-items: baseline;
+  padding: 1.35rem 0;
+  border-top: 1px solid rgba(236, 230, 214, 0.2);
+}
+
+.ruler li:last-child {
+  border-bottom: 1px solid rgba(236, 230, 214, 0.2);
+}
+
+.ruler-dist {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  color: var(--canary);
+  text-transform: uppercase;
+}
+
+.ruler-where {
+  font-family: var(--typed);
+  font-size: 0.82rem;
+  color: var(--on-board-soft);
+}
+
+.ruler-sample {
+  font-family: var(--body);
+  line-height: 1.2;
+  color: var(--on-board);
+}
+
+.ruler-head {
+  font-family: var(--typed);
+  font-size: 0.78rem;
+  color: var(--on-board-soft);
+  white-space: nowrap;
+}
+
+/* ---------- PPP handoff ---------- */
+
+.handoff {
+  padding: clamp(3rem, 9vh, 6rem) var(--gutter);
+  background: var(--board);
+}
+
+.handoff-note {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.2rem clamp(1.4rem, 4vw, 2.4rem) 2rem;
+  background: var(--green-stock);
+  color: var(--ink);
+  box-shadow: var(--lift);
+  transform: rotate(0.8deg);
+}
+
+.handoff-note h2 {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.handoff-note p {
+  font-size: 0.94rem;
+  color: rgba(20, 23, 26, 0.82);
+  max-width: 60ch;
+  margin-bottom: 0.9rem;
+}
+
+.handoff-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 2px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.handoff-link:hover,
+.handoff-link:focus-visible {
+  color: var(--pink-deep);
+  border-bottom-color: var(--pink-deep);
+}
+
+/* ---------- take a tab ---------- */
+
+.take {
+  padding: clamp(3rem, 9vh, 6rem) var(--gutter) clamp(3.5rem, 10vh, 6rem);
+  background: var(--board-deep);
+}
+
+.take-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.take h2 {
+  margin-bottom: clamp(1.8rem, 4vh, 2.6rem);
+}
+
+.take-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 2rem);
+  align-items: start;
+}
+
+.take-primary,
+.take-secondary {
+  padding: clamp(1.5rem, 3.5vw, 2.3rem);
+  color: var(--ink);
+  box-shadow: var(--lift);
+}
+
+.take-primary {
+  background: var(--canary);
+  transform: rotate(-0.5deg);
+}
+
+.take-secondary {
+  background: var(--newsprint);
+  transform: rotate(0.4deg);
+}
+
+.take-label {
+  font-family: var(--typed);
+  font-size: 0.74rem;
+  color: rgba(20, 23, 26, 0.62);
+  margin-bottom: 0.4rem;
+}
+
+.take-primary h3,
+.take-secondary h3 {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.take-primary > p,
+.take-secondary > p {
+  font-size: 0.93rem;
+  color: rgba(20, 23, 26, 0.8);
+  max-width: 46ch;
+  margin-bottom: 1.3rem;
+}
+
+.take-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.25rem;
+  font-family: var(--display);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  cursor: pointer;
+  transition: transform 0.14s ease, background 0.16s ease, color 0.16s ease;
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+.btn-loud {
+  background: var(--pink);
+  color: var(--ink);
+}
+
+.btn-loud:hover,
+.btn-loud:focus-visible {
+  background: var(--ink);
+  color: var(--canary);
+}
+
+.btn-plain {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-plain:hover,
+.btn-plain:focus-visible {
+  background: var(--ink);
+  color: var(--newsprint);
+}
+
+.cmd {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 0.5rem;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+}
+
+.cmd code {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0.8rem;
+  font-family: var(--typed);
+  font-size: 0.73rem;
+  line-height: 1.4;
+  color: var(--canary);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.cmd-copy {
+  flex-shrink: 0;
+  appearance: none;
+  border: 0;
+  border-left: 2px solid var(--newsprint);
+  padding: 0 0.85rem;
+  background: var(--ink);
+  color: var(--newsprint);
+  font-family: var(--display);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+
+.cmd-copy:hover,
+.cmd-copy:focus-visible {
+  background: var(--pink);
+  color: var(--ink);
+}
+
+.take-status {
+  min-height: 1.3rem;
+  margin-bottom: 0.6rem;
+  font-family: var(--typed);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+}
+
+/* ---------- footer rail ---------- */
+
+.foot {
+  padding: 1.6rem var(--gutter);
+  background: var(--board-rail);
+  border-top: 1px solid rgba(236, 230, 214, 0.14);
+}
+
+.foot-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem 1.5rem;
+}
+
+.foot-note,
+.foot-links {
+  font-family: var(--typed);
+  font-size: 0.76rem;
+  color: var(--on-board-soft);
+}
+
+.foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+}
+
+.foot-note a,
+.foot-links a {
+  color: var(--on-board-soft);
+  text-underline-offset: 3px;
+  transition: color 0.16s ease;
+}
+
+.foot-note a:hover,
+.foot-links a:hover,
+.foot-note a:focus-visible,
+.foot-links a:focus-visible {
+  color: var(--canary);
+}
+
+/* ============================================================
+   responsive
+   ============================================================ */
+
+@media (max-width: 1080px) {
+  .note-d,
+  .note-g {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .example-grid,
+  .take-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .example-flyer-wrap {
+    position: static;
+    max-width: 420px;
+  }
+
+  .ruler li {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+  }
+
+  .ruler-sample,
+  .ruler-head {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .rail-nav {
+    display: none;
+  }
+
+  .wall {
+    min-height: 0;
+    display: block;
+    padding: 3.2rem 0 0;
+  }
+
+  /* two survive so the flyer still visibly sits on a contested board —
+     the caption below claims competition, so competition has to be there */
+  .note-b,
+  .note-c,
+  .note-e,
+  .note-h {
+    display: none;
+  }
+
+  .note-a {
+    top: 0;
+    left: -30px;
+    width: 148px;
+  }
+
+  .note-f {
+    top: 14px;
+    right: -34px;
+    width: 140px;
+  }
+
+  .subject {
+    width: 100%;
+    margin-left: 0;
+    transform: rotate(-0.6deg);
+  }
+
+  .subject h1 {
+    font-size: clamp(2.8rem, 15vw, 4rem);
+  }
+
+  .tear {
+    margin: 0 -1.2rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .subject {
+    padding: 2.2rem 1.2rem 0;
+  }
+
+  .procedure > li {
+    padding-left: 3.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tab {
+    font-size: 0.62rem;
+  }
+
+  .tear-strip {
+    padding: 0 0.5rem;
+  }
+
+  .ruler li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ruler-sample,
+  .ruler-head {
+    grid-column: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .wall.squinted .note {
+    filter: saturate(0.3) brightness(0.62);
+  }
+}

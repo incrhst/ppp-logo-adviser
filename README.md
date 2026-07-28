@@ -16,7 +16,8 @@ Branding follows [brand.incrementic.com](https://brand.incrementic.com/).
 
 | Path | Purpose |
 |------|---------|
-| `index.html` | Landing page with the framework + resource downloads |
+| `ppp.html` | PPP Logo Test landing page (served at `ppp.incrementic.com/`) |
+| `flyer.html` + `flyer.css` + `flyer.js` | Critique My Flyer landing page (served at `critique-flyer.incrementic.com/`) |
 | `.cursor/skills/ppp-logo-test/` | Cursor Agent skill (`SKILL.md` + `reference.md`) |
 | `.cursor/skills/critique-my-flyer/` | Companion flyer-critique skill (`SKILL.md` + `references/production.md`) |
 | `resources/ppp-logo-test-prompt.md` | Prompt you can paste into any AI agent |
@@ -49,6 +50,25 @@ npx vercel --prod
 ```
 
 No build step, framework, or environment variables are required. `vercel.json` sets `framework: null` and headers for markdown/zip downloads.
+
+### Two sites, one deployment
+
+Both domains point at this one project and are split by a host-based rewrite on `/`:
+
+```jsonc
+"rewrites": [
+  { "source": "/", "has": [{ "type": "host", "value": "critique-flyer.incrementic.com" }],
+    "destination": "/flyer" },
+  { "source": "/", "destination": "/ppp" }   // every other host
+]
+```
+
+> **There is deliberately no `index.html`.** Vercel resolves the filesystem *before*
+> rewrites, so a root `index.html` would always win and the host rule would never fire.
+> The pages are `ppp.html` and `flyer.html`; `/` reaches them only through the rewrite.
+> If you add an `index.html`, both domains will silently serve it and the split breaks.
+
+Either page can be previewed on any host at its own path: `/ppp` and `/flyer`.
 
 If you use a custom domain, update the absolute `og:image` and `og:url` values in `index.html` to match your production URL.
 

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<!--
+  DIRECTION CONTRACT — critique-my-flyer landing surface (Persuade)
+
+  THESIS: A flyer is judged in three seconds on a wall of competing paper, so the page
+  IS that wall. It refuses the centred hero-and-feature-cards product page the category ships.
+
+  OWN-WORLD: Municipal felt-green board. Notices in newsprint, bright white, fluoro pink,
+  fluoro green and canary stock, pinned and stapled at real angles with drop shadows and
+  curled corners. Anton for poster display, Libre Franklin for notice body, Courier Prime
+  for typed critique marks. Nothing rounded, nothing centred, everything overlapping.
+
+  STORY: This is what your flyer is up against -> here is the read it actually gets ->
+  here is what a real critique hands back -> tear a tab and go run one.
+
+  FIRST VIEWPORT: Full-bleed board of pinned notices at real angles. On load everything
+  except one canary flyer recedes into blur and desaturation - the squint test performed on
+  the visitor. The survivor carries the H1 and the line "Three seconds. Then it's on the floor."
+  Its bottom edge is a row of tear-off tabs; pulling one copies the prompt. That is the
+  primary action, sitting where a real notice puts it.
+
+  FORM: The community noticeboard. Position 4 of 7 on the resonance list, assigned by an
+  external roll (shell-random substitute, seed 1785279402 - concept-seed.mjs returned no
+  output in this environment, so the dice were rolled outside the model rather than skipped).
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Critique My Flyer — an agent skill from Incrementic</title>
+    <meta
+      name="description"
+      content="Paste your flyer, poster or event graphic into an AI agent and get a prioritised, specific critique — the three-second read, the squint test, legibility at distance, and what you forgot to put on it."
+    />
+    <meta name="theme-color" content="#223B31" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Incrementic" />
+    <meta property="og:title" content="Critique My Flyer" />
+    <meta
+      property="og:description"
+      content="A flyer gets three seconds. This tells you what those three seconds actually deliver — and ranks what to fix by whether it kills the flyer."
+    />
+    <meta property="og:url" content="https://critique-flyer.incrementic.com/" />
+    <meta property="og:image" content="https://critique-flyer.incrementic.com/og-flyer.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="A yellow flyer pinned to a green noticeboard reading “Critique my flyer — three seconds, then it's on the floor”, with tear-off tabs along the bottom"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://critique-flyer.incrementic.com/og-flyer.png" />
+    <meta
+      name="twitter:image:alt"
+      content="A yellow flyer pinned to a green noticeboard reading “Critique my flyer — three seconds, then it's on the floor”"
+    />
+    <meta name="twitter:title" content="Critique My Flyer" />
+    <meta
+      name="twitter:description"
+      content="A flyer gets three seconds. This tells you what those three seconds actually deliver."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="flyer.css" />
+  </head>
+  <body>
+    <a class="skip" href="#board">Skip to content</a>
+
+    <header class="rail">
+      <div class="rail-inner">
+        <a class="rail-brand" href="https://incrementic.com/" rel="noopener noreferrer" target="_blank">
+          <img
+            src="https://brand.incrementic.com/assets/incrementic-main-logo.svg"
+            alt="Incrementic"
+            width="104"
+            height="18"
+          />
+        </a>
+        <nav class="rail-nav" aria-label="Sections">
+          <a href="#read">The read</a>
+          <a href="#example">A real critique</a>
+          <a href="#distance">Distance</a>
+          <a href="#take">Take a tab</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ THE BOARD ============ -->
+      <section class="board" id="board">
+        <h2 class="sr-only">Critique My Flyer</h2>
+
+        <div class="board-noise" aria-hidden="true"></div>
+
+        <div class="wall" id="wall">
+          <!-- competing notices: decorative, real text so it reads as a board not a texture -->
+          <div class="note note-a" aria-hidden="true">
+            <p class="note-kicker">Lost cat</p>
+            <p class="note-big">MARMALADE</p>
+            <p class="note-small">Very friendly. Answers to nothing.</p>
+            <div class="tabs tabs-dead"><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+
+          <div class="note note-b" aria-hidden="true">
+            <p class="note-big">PILATES</p>
+            <p class="note-small">Tuesdays · Church hall · All levels welcome</p>
+          </div>
+
+          <div class="note note-c" aria-hidden="true">
+            <p class="note-kicker">Parish notice</p>
+            <p class="note-small">
+              The bring-and-buy sale has moved to the small hall owing to the roof.
+              Cakes to Margaret by Thursday.
+            </p>
+          </div>
+
+          <div class="note note-d" aria-hidden="true">
+            <p class="note-big">GUITAR<br />LESSONS</p>
+            <div class="tabs tabs-dead"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+
+          <div class="note note-e" aria-hidden="true">
+            <p class="note-kicker">Wanted</p>
+            <p class="note-small">Reliable dog walker. Must like large dog.</p>
+          </div>
+
+          <div class="note note-f" aria-hidden="true">
+            <p class="note-big">QUIZ<br />NIGHT</p>
+            <p class="note-small">£2 · Saturday · Bring a team</p>
+          </div>
+
+          <div class="note note-g" aria-hidden="true">
+            <p class="note-small">
+              Car boot sale — pitches available — ring the number on the gate
+            </p>
+          </div>
+
+          <div class="note note-h" aria-hidden="true">
+            <p class="note-kicker">For sale</p>
+            <p class="note-big">PIANO</p>
+            <p class="note-small">Free to collector. Heavy.</p>
+          </div>
+
+          <!-- THE SUBJECT: the one that survives the squint -->
+          <article class="subject" id="subject">
+            <span class="pin" aria-hidden="true"></span>
+            <p class="subject-kicker">An agent skill from Incrementic</p>
+            <h1>Critique<br />my flyer</h1>
+            <p class="subject-lede">
+              Three seconds. Then it's on the floor.
+            </p>
+            <p class="subject-body">
+              Paste a flyer, poster or event graphic into an AI agent and get back what
+              it actually communicated in those three seconds, plus a ranked list of what
+              to fix, hardest problem first.
+            </p>
+
+            <div class="tear">
+              <p class="tear-instruction" id="tear-instruction">Take a tab —</p>
+              <div class="tear-strip">
+                <button type="button" class="tab" data-action="prompt">
+                  <span class="tab-line">Copy</span>
+                  <span class="tab-line">the</span>
+                  <span class="tab-line">prompt</span>
+                </button>
+                <button type="button" class="tab" data-action="prompt">
+                  <span class="tab-line">Copy</span>
+                  <span class="tab-line">the</span>
+                  <span class="tab-line">prompt</span>
+                </button>
+                <button type="button" class="tab" data-action="prompt">
+                  <span class="tab-line">Copy</span>
+                  <span class="tab-line">the</span>
+                  <span class="tab-line">prompt</span>
+                </button>
+                <button type="button" class="tab" data-action="prompt">
+                  <span class="tab-line">Copy</span>
+                  <span class="tab-line">the</span>
+                  <span class="tab-line">prompt</span>
+                </button>
+                <button type="button" class="tab" data-action="prompt">
+                  <span class="tab-line">Copy</span>
+                  <span class="tab-line">the</span>
+                  <span class="tab-line">prompt</span>
+                </button>
+                <button type="button" class="tab" data-action="prompt">
+                  <span class="tab-line">Copy</span>
+                  <span class="tab-line">the</span>
+                  <span class="tab-line">prompt</span>
+                </button>
+              </div>
+            </div>
+            <p class="tear-status" id="tear-status" role="status" aria-live="polite"></p>
+          </article>
+        </div>
+
+        <p class="squint-caption">
+          <span class="squint-caption-mark" aria-hidden="true">↑</span>
+          That's the squint test. Everything greyed out is what your flyer is
+          competing with. <a href="#read">Here's the rest of the read.</a>
+        </p>
+      </section>
+
+      <!-- ============ THE READ ============ -->
+      <section class="sheet-section" id="read">
+        <div class="sheet">
+          <span class="staple staple-1" aria-hidden="true"></span>
+          <span class="staple staple-2" aria-hidden="true"></span>
+
+          <p class="sheet-head">Inspection procedure</p>
+          <h2 class="sheet-title">Four reads, in this order</h2>
+          <p class="sheet-intro">
+            Performed before any judgment. It's what stops a critique from being a
+            rubric recited at you.
+          </p>
+
+          <ol class="procedure">
+            <li>
+              <h3>The three-second read</h3>
+              <p>
+                Look once, then write down, before analysing anything, what actually
+                landed. If the headline, the what, and the what-do-I-do-next aren't all
+                in that list, that's the finding, and it outranks everything else.
+              </p>
+            </li>
+            <li>
+              <h3>The squint test</h3>
+              <p>
+                Blur it. What still reads as a shape? Strong flyers survive: one dominant
+                block, one image, one bright element. If everything greys into an even
+                field, there's no hierarchy.
+              </p>
+            </li>
+            <li>
+              <h3>The distance test</h3>
+              <p>
+                Judged against where it'll actually be seen. At poster distance, body text
+                under roughly 24 pt is decoration, not information. On a feed, it gets seen
+                at thumbnail size first, so the headline has to survive at about 15% scale.
+              </p>
+            </li>
+            <li>
+              <h3>The missing-information check</h3>
+              <p>
+                Flyers fail more often from omission than from ugliness. A named list gets
+                walked, every time.
+              </p>
+              <ul class="omissions">
+                <li>what it is</li>
+                <li>date</li>
+                <li>start time</li>
+                <li>end time</li>
+                <li>venue name</li>
+                <li>address</li>
+                <li>price or “free”</li>
+                <li>who it's for</li>
+                <li>how to book</li>
+                <li>contact</li>
+                <li>accessibility</li>
+                <li>parking</li>
+                <li>rain date</li>
+                <li>age limits</li>
+                <li>who's running it</li>
+              </ul>
+            </li>
+          </ol>
+
+          <p class="sheet-margin-note">
+            A flyer can only be judged against its job. The same design that fails as a
+            handbill succeeds as an Instagram post, so it asks where this will be seen
+            before it tells you anything.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============ WORKED EXAMPLE ============ -->
+      <section class="example" id="example">
+        <div class="example-head">
+          <h2>What comes back</h2>
+          <p>
+            Ranked by consequence, not completeness. Three real problems in order beat
+            eleven observations.
+          </p>
+        </div>
+
+        <div class="example-grid">
+          <div class="example-flyer-wrap">
+            <p class="illustrative">Illustrative example — not a real client flyer</p>
+            <div class="bad-flyer">
+              <span class="pin pin-sm" aria-hidden="true"></span>
+              <div class="bad-flyer-logo">GREENFIELD<br />COMMUNITY TRUST</div>
+              <div class="bad-flyer-photo" aria-hidden="true">
+                <span class="bad-flyer-photo-label">stock beach photograph</span>
+              </div>
+              <p class="bad-flyer-head">COMMUNITY EVENT</p>
+              <p class="bad-flyer-para">
+                Join us for a morning of community spirit on Saturday 14th at 10am,
+                meeting by the car park at the north end of the beach, and please do
+                bring your own gloves as we have a limited supply available on the day.
+              </p>
+              <p class="bad-flyer-url">www.greenfieldcommunitytrust.org.uk</p>
+            </div>
+          </div>
+
+          <div class="critique">
+            <p class="critique-file">critique.md</p>
+
+            <h3 class="critique-h">Verdict</h3>
+            <p>
+              The photograph is doing real work and nothing else is. A stranger walking
+              past learns that an organisation exists and that community is involved —
+              not what's happening, or when.
+            </p>
+
+            <h3 class="critique-h">What I got in three seconds</h3>
+            <p>
+              A beach, an organisation logo, and the words “community event”. Not what
+              the event is, not when, not where.
+            </p>
+
+            <h3 class="critique-h critique-h-fix">Fix first</h3>
+            <ul class="fixes">
+              <li>
+                <strong>The headline says nothing</strong> — “COMMUNITY EVENT” is a
+                category, not an invitation.
+                <span class="arrow" aria-hidden="true">→</span>
+                Replace it with the thing itself: “BEACH CLEAN-UP” at the same size or
+                larger, neighbourhood name under it.
+              </li>
+              <li>
+                <strong>The date and location are buried in prose</strong> — nobody
+                scanning a noticeboard parses a 42-word paragraph.
+                <span class="arrow" aria-hidden="true">→</span>
+                Pull date, start time and meeting point out as three stacked lines at
+                roughly 24–28 pt, directly under the headline.
+              </li>
+              <li>
+                <strong>No call to action</strong> — it never says what to do.
+                <span class="arrow" aria-hidden="true">→</span>
+                One line at the bottom: “Just turn up — or register at [URL]”, 14 pt
+                minimum, QR code beside it.
+              </li>
+            </ul>
+
+            <h3 class="critique-h">Worth fixing</h3>
+            <ul class="fixes">
+              <li>
+                <strong>The photograph says nothing specific</strong> — a stock beach
+                could illustrate a hundred different events, so it fills the top third
+                without narrowing anything down.
+                <span class="arrow" aria-hidden="true">→</span>
+                Keep it only once the headline names the event; better still, crop to
+                people actually clearing a beach.
+              </li>
+              <li>
+                <strong>The logo is the largest element</strong> — it outranks the date,
+                which is the second most important thing on the page.
+                <span class="arrow" aria-hidden="true">→</span>
+                Drop it to a footer lockup, roughly a quarter of its current width.
+              </li>
+            </ul>
+
+            <h3 class="critique-h">What's working</h3>
+            <p>
+              The photograph is well cropped and the horizon sits off-centre, so the eye
+              travels down into the layout rather than off the edge. Keep it — it's the
+              only element earning its space.
+            </p>
+
+            <h3 class="critique-h critique-h-missing">Missing information</h3>
+            <p class="critique-missing">
+              End time · whether children can come · accessibility of the meeting point ·
+              what happens if it rains
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ DISTANCE RULER ============ -->
+      <section class="distance" id="distance">
+        <div class="distance-head">
+          <h2>“Is that readable?” has a number</h2>
+          <p>
+            Minimums by viewing distance, from the skill's production reference. A floor,
+            not a target. Thin weights, light-on-dark and low contrast all push them up.
+          </p>
+        </div>
+
+        <ul class="ruler">
+          <li>
+            <span class="ruler-dist">40 cm</span>
+            <span class="ruler-where">Held in the hand</span>
+            <span class="ruler-sample" style="font-size: 10px">Body text at 9–10 pt</span>
+            <span class="ruler-head">Headline 24 pt+</span>
+          </li>
+          <li>
+            <span class="ruler-dist">1–2 m</span>
+            <span class="ruler-where">Noticeboard</span>
+            <span class="ruler-sample" style="font-size: 14px">Body text at 14 pt</span>
+            <span class="ruler-head">Headline 48 pt+</span>
+          </li>
+          <li>
+            <span class="ruler-dist">3–5 m</span>
+            <span class="ruler-where">Poster, standing still</span>
+            <span class="ruler-sample" style="font-size: 24px">Body 24 pt</span>
+            <span class="ruler-head">Headline 100 pt+</span>
+          </li>
+          <li>
+            <span class="ruler-dist">5–10 m</span>
+            <span class="ruler-where">Window or street, in motion</span>
+            <span class="ruler-sample" style="font-size: 36px">Body 36 pt</span>
+            <span class="ruler-head">Headline 150 pt+</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ============ PPP HANDOFF ============ -->
+      <section class="handoff">
+        <div class="handoff-note">
+          <span class="pin pin-sm" aria-hidden="true"></span>
+          <h2>Sometimes it isn't the flyer</h2>
+          <p>
+            A flyer is where a weak logo gets exposed: reproduced small, printed in one
+            colour, reversed over a photograph. If the mark turns to mush at the size used
+            here, or needs a white box behind it to survive the background, the problem
+            will follow you onto every sign, poster and social post after this one.
+          </p>
+          <p>
+            When that's what's happening, the critique says so and hands you off rather
+            than trying to fix a logo inside a flyer review.
+          </p>
+          <a class="handoff-link" href="https://ppp.incrementic.com/" rel="noopener noreferrer" target="_blank">
+            Run the PPP Logo Test →
+          </a>
+        </div>
+      </section>
+
+      <!-- ============ TAKE A TAB ============ -->
+      <section class="take" id="take">
+        <div class="take-inner">
+          <h2>Go and run one</h2>
+
+          <div class="take-grid">
+            <div class="take-primary">
+              <p class="take-label">No install</p>
+              <h3>Paste the prompt</h3>
+              <p>
+                Works in Claude, ChatGPT, Cursor or anything else that reads an image.
+                Copy it, paste it, then attach your flyer.
+              </p>
+              <div class="take-actions">
+                <button type="button" class="btn btn-loud" data-action="prompt">
+                  Copy the prompt
+                </button>
+                <a class="btn btn-plain" href="resources/critique-my-flyer-prompt.md" download>
+                  Download .md
+                </a>
+              </div>
+              <p class="take-status" id="take-status" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="take-secondary">
+              <p class="take-label">Agent skill</p>
+              <h3>Install it properly</h3>
+              <p>
+                Installs <code>critique-my-flyer</code> for Cursor, Claude Code and other
+                supported agents so it triggers on its own.
+              </p>
+              <div class="cmd">
+                <code id="install-cmd">npx skills add incrhst/ppp-logo-adviser@critique-my-flyer -y</code>
+                <button type="button" class="cmd-copy" data-action="install" aria-label="Copy install command">
+                  Copy
+                </button>
+              </div>
+              <p class="take-status" id="install-status" role="status" aria-live="polite"></p>
+              <div class="take-actions">
+                <a
+                  class="btn btn-plain"
+                  href="https://skills.sh/incrhst/ppp-logo-adviser"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >View on skills.sh</a
+                >
+                <a class="btn btn-plain" href="resources/critique-my-flyer-skill.zip" download>
+                  Download skill
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot-inner">
+        <p class="foot-note">
+          Critique My Flyer · an agent skill from
+          <a href="https://incrementic.com/" rel="noopener noreferrer" target="_blank">Incrementic</a>
+          · © <span id="yr"></span> Incrementic Limited
+        </p>
+        <nav class="foot-links" aria-label="Elsewhere">
+          <a href="https://ppp.incrementic.com/" rel="noopener noreferrer" target="_blank">PPP Logo Test</a>
+          <a href="https://brand.incrementic.com/" rel="noopener noreferrer" target="_blank">Brand</a>
+          <a href="https://medium.com/@davidbain" rel="noopener noreferrer" target="_blank">David Bain</a>
+          <a href="http://x.com/pigeonflight" rel="noopener noreferrer" target="_blank">Say thanks</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="flyer.js"></script>
+  </body>
+</html>
