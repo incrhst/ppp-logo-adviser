@@ -3,6 +3,18 @@
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/resources/SKILL.md",
+      "destination": "/resources/ppp-logo-test/SKILL.md",
+      "permanent": true
+    },
+    {
+      "source": "/resources/reference.md",
+      "destination": "/resources/ppp-logo-test/reference.md",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/resources/(.*).md",

@@ -36,15 +36,15 @@ function setStatus(message, id = "copy-status") {
   if (el) el.textContent = message;
 }
 
-const INSTALL_COMMAND = "npx skills add incrhst/ppp-logo-adviser@ppp-logo-test -y";
-
-async function handleCopyInstall() {
+async function handleCopyInstall(commandId, statusId) {
+  const el = document.getElementById(commandId);
+  if (!el) return;
   try {
-    await copyText(INSTALL_COMMAND);
-    setStatus("Copied to clipboard.", "install-status");
+    await copyText(el.textContent.trim());
+    setStatus("Copied to clipboard.", statusId);
   } catch (err) {
     console.error(err);
-    setStatus("Copy failed.", "install-status");
+    setStatus("Copy failed.", statusId);
   }
 }
 
@@ -84,6 +84,15 @@ document.getElementById("copy-prompt")?.addEventListener("click", handleCopy);
 document
   .getElementById("copy-prompt-inline")
   ?.addEventListener("click", handleCopy);
-document.getElementById("copy-install")?.addEventListener("click", handleCopyInstall);
+document
+  .getElementById("copy-install")
+  ?.addEventListener("click", () =>
+    handleCopyInstall("install-command", "install-status")
+  );
+document
+  .getElementById("copy-flyer-install")
+  ?.addEventListener("click", () =>
+    handleCopyInstall("flyer-install-command", "flyer-install-status")
+  );
 
 hydratePreview();

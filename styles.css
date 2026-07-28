@@ -558,6 +558,19 @@ code {
   max-width: 30ch;
 }
 
+/* also from us */
+.also {
+  background: var(--soft);
+}
+
+.resource-also {
+  max-width: 44rem;
+}
+
+.resource-also .also-lede {
+  max-width: 56ch;
+}
+
 /* note — editorial pull from earlier design */
 .note {
   padding-top: clamp(2.5rem, 6vh, 4rem);

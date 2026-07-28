@@ -2,7 +2,7 @@
 
 [![skills.sh](https://skills.sh/b/incrhst/ppp-logo-adviser)](https://skills.sh/incrhst/ppp-logo-adviser)
 
-Landing page, Cursor skill, and pasteable AI agent prompt for David Bain’s **Pencil-Pen-Pigment (PPP) Logo Test** — a resource from [Incrementic](https://incrementic.com/).
+Landing page, agent skills, and pasteable AI agent prompt for David Bain’s **Pencil-Pen-Pigment (PPP) Logo Test** — a resource from [Incrementic](https://incrementic.com/).
 
 Effectiveness beats attractiveness. The PPP Test asks whether a logo still works when:
 
@@ -18,8 +18,17 @@ Branding follows [brand.incrementic.com](https://brand.incrementic.com/).
 |------|---------|
 | `index.html` | Landing page with the framework + resource downloads |
 | `.cursor/skills/ppp-logo-test/` | Cursor Agent skill (`SKILL.md` + `reference.md`) |
+| `.cursor/skills/critique-my-flyer/` | Companion flyer-critique skill (`SKILL.md` + `references/production.md`) |
 | `resources/ppp-logo-test-prompt.md` | Prompt you can paste into any AI agent |
 | `resources/ppp-logo-test-skill.zip` | Zipped skill for download from the landing page |
+| `resources/critique-my-flyer-skill.zip` | Zipped flyer skill for download from the landing page |
+
+## Skills in this repo
+
+| Skill | What it does |
+|-------|--------------|
+| `ppp-logo-test` | Evaluates a logo against the Pencil-Pen-Pigment test |
+| `critique-my-flyer` | Critiques a flyer, poster, or event graphic and returns prioritised, specific fixes. Hands off to the PPP test when the logo is the real problem |
 
 ## Local preview
 
@@ -50,9 +59,13 @@ Use the [skills.sh](https://skills.sh) CLI — works with Cursor and other suppo
 ```bash
 # Project install
 npx skills add incrhst/ppp-logo-adviser@ppp-logo-test -y
+npx skills add incrhst/ppp-logo-adviser@critique-my-flyer -y
 
 # Global install
 npx skills add incrhst/ppp-logo-adviser@ppp-logo-test -g -y
+
+# Both skills at once
+npx skills add incrhst/ppp-logo-adviser --all
 ```
 
 List skills in this repo without installing:
@@ -65,9 +78,11 @@ Learn more: [skills.sh/incrhst/ppp-logo-adviser](https://skills.sh/incrhst/ppp-l
 
 ## Use the Cursor skill (manual)
 
-Copy `.cursor/skills/ppp-logo-test/` into a project’s `.cursor/skills/` folder (or your personal `~/.cursor/skills/`), then ask the agent to run a PPP Logo Test on a mark.
+Copy `.cursor/skills/ppp-logo-test/` or `.cursor/skills/critique-my-flyer/` into a project’s `.cursor/skills/` folder (or your personal `~/.cursor/skills/`), then ask the agent to run a PPP Logo Test on a mark — or share a flyer and ask for a critique.
 
-Public copies also live under `resources/` for the landing page downloads.
+Public copies also live under `resources/<skill-name>/` for the landing page downloads.
+
+> Keep those copies inside a per-skill folder. A loose `resources/SKILL.md` at that level makes the skills CLI treat the repo as a single-skill package and stop discovering the rest — which silently hides skills from skills.sh. Verify with `npx skills add . --list` after adding a skill.
 
 ## Use the pasteable prompt
 
