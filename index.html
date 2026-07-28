@@ -187,8 +187,34 @@
                 <a href="https://skills.sh/incrhst/ppp-logo-adviser" rel="noopener noreferrer" target="_blank">skills.sh</a>.
               </p>
               <div class="install-snippet">
-                <code id="install-command">npx skills add incrhst/ppp-logo-adviser@ppp-logo-test -y</code>
-                <button type="button" class="text-btn" id="copy-install">Copy</button>
+                <div class="install-snippet-bar">
+                  <span>Install command</span>
+                  <button
+                    type="button"
+                    class="text-btn copy-btn"
+                    id="copy-install"
+                    aria-label="Copy install command"
+                  >
+                    <svg class="copy-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <rect
+                        x="8"
+                        y="8"
+                        width="12"
+                        height="12"
+                        rx="2"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                      />
+                      <path
+                        d="M6 14V6a2 2 0 0 1 2-2h8"
+                        stroke="currentColor"
+                        stroke-width="1.75"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <pre><code id="install-command">npx skills add incrhst/ppp-logo-adviser@ppp-logo-test -y</code></pre>
               </div>
               <p class="copy-status" id="install-status" role="status" aria-live="polite"></p>
               <div class="resource-actions">
@@ -228,7 +254,24 @@
                 agent, then paste your logo.
               </p>
               <div class="resource-actions">
-                <button type="button" class="btn btn-primary" id="copy-prompt">
+                <button type="button" class="btn btn-primary copy-btn" id="copy-prompt">
+                  <svg class="copy-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect
+                      x="8"
+                      y="8"
+                      width="12"
+                      height="12"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                    />
+                    <path
+                      d="M6 14V6a2 2 0 0 1 2-2h8"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                    />
+                  </svg>
                   Copy prompt
                 </button>
                 <a
@@ -245,7 +288,30 @@
           <div class="prompt-preview">
             <div class="prompt-preview-bar">
               <span>ppp-logo-test-prompt.md</span>
-              <button type="button" class="text-btn" id="copy-prompt-inline">Copy</button>
+              <button
+                type="button"
+                class="text-btn copy-btn"
+                id="copy-prompt-inline"
+                aria-label="Copy prompt"
+              >
+                <svg class="copy-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect
+                    x="8"
+                    y="8"
+                    width="12"
+                    height="12"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                  />
+                  <path
+                    d="M6 14V6a2 2 0 0 1 2-2h8"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </button>
             </div>
             <pre id="prompt-preview" tabindex="0"><code></code></pre>
           </div>

@@ -368,36 +368,68 @@ a {
 }
 
 .install-snippet {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
   margin-bottom: 0.5rem;
-  padding: 0.75rem 0.9rem;
   border: 1px solid var(--hair);
   border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.install-snippet-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--hair);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--soft);
+}
+
+.install-snippet-bar > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.install-snippet pre {
+  margin: 0;
+  padding: 0.85rem 0.9rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #ededef;
   background: var(--ink);
+  -webkit-overflow-scrolling: touch;
 }
 
 .install-snippet code {
+  display: block;
   margin: 0;
   padding: 0;
   border: 0;
+  border-radius: 0;
   background: transparent;
-  color: #ededef;
-  font-size: 0.72rem;
-  line-height: 1.4;
-  word-break: break-all;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  white-space: nowrap;
 }
 
 .install-snippet .text-btn {
-  color: #ff9d96;
+  color: var(--color-accent);
   flex-shrink: 0;
 }
 
 .install-snippet .text-btn:hover,
 .install-snippet .text-btn:focus-visible {
-  color: var(--incrementic-white);
+  color: #d94840;
 }
 
 .resource-actions {
@@ -454,6 +486,29 @@ code {
   text-transform: inherit;
   cursor: pointer;
   padding: 0;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.copy-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.text-btn.copy-btn {
+  padding: 0.15rem;
+  border-radius: 4px;
+}
+
+.text-btn.copy-btn:hover,
+.text-btn.copy-btn:focus-visible {
+  background: rgba(234, 81, 72, 0.08);
 }
 
 .text-btn:hover,
